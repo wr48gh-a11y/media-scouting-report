@@ -1,6 +1,6 @@
 # Media Scouting Report
 
-A prototype **media outreach intelligence console** — it turns a company story
+A prototype **media outreach intelligence console**, it turns a company story
 into a ranked Target Deck of reporter Scout Cards, backed by an honest
 diagnosis of whether the story deserves coverage at all.
 
@@ -17,16 +17,16 @@ It is deliberately **not an email generator**.
 
 Most outreach tooling optimizes the first question: bigger lists, faster
 sends, merge fields. This prototype is built around the second. The unit of
-work is not the email — it's the **fit case**: evidence that a specific
+work is not the email, it's the **fit case**: evidence that a specific
 reporter has a demonstrated reason to care about this specific story, plus an
 honest check on whether we can meet their standard of proof.
 
 ## The workflow
 
-1. **Story Brief** — a calm intake screen: just the story, what's being
+1. **Story Brief** : a calm intake screen: just the story, what's being
    announced, and when. Nothing derived shows yet; the single action is
    "Run Story Diagnosis."
-2. **Story Diagnosis** — the reveal. An honest read of the story's strength
+2. **Story Diagnosis** : the reveal. An honest read of the story's strength
    across five signals (timeliness, tension, evidence, audience stakes,
    novelty), with a verdict and a list of gaps to close *before* anyone's
    inbox is involved. **Likely Target Types** rates four audience categories
@@ -34,9 +34,9 @@ honest check on whether we can meet their standard of proof.
    scout cards (no fit numbers — those belong to the Target Deck), and the
    graded **proof points**, audiences, and spokespeople from the brief are
    laid out as evidence.
-3. **Angle Matrix** — one story, many frames. Audience × frame pairings; most
+3. **Angle Matrix** : one story, many frames. Audience × frame pairings; most
    stories only have two or three cells that are real.
-4. **Target Deck** — clickable reporter **Scout Cards**, ranked by a fit score
+4. **Target Deck** : clickable reporter **Scout Cards**, ranked by a fit score
    that weights proof match second only to beat relevance. The card front
    stays compact: identity, fit, pitch readiness, suggested angle, and **The
    Open** — the recommended first line for that reporter. The long-form fit
