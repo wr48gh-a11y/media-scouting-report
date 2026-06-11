@@ -1,1 +1,1 @@
-# media-scouting-report
+Media Scouting Report is a prototype media outreach intelligence tool for turning a company story into a ranked target deck, reporter scout cards, and an outreach pack.
