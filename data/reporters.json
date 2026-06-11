@@ -1,0 +1,143 @@
+{
+  "reporters": [
+    {
+      "id": "rep-001",
+      "name": "Maya Okafor",
+      "outlet": "The Current",
+      "outletType": "Energy trade publication",
+      "beat": "Grid infrastructure & storage",
+      "location": "Portland, OR",
+      "avatar": "assets/reporters/black-01.svg",
+      "fitScore": 88,
+      "scores": {
+        "beatRelevance": 94,
+        "coverageRecency": 88,
+        "audienceOverlap": 82,
+        "proofMatch": 90,
+        "receptivity": 76
+      },
+      "pitchReadiness": {
+        "level": "conditional",
+        "note": "Strongest fit on the deck, but she'll ask for a utility partner on record — background only today."
+      },
+      "theOpen": "Most grid-storage stories chase new batteries. This one starts with forgotten dams.",
+      "whyTheyCare": "Has written three pieces this year on the gap between storage targets and deployed capacity. Ferrowatt's dispatch data directly answers a question she raised in her May feature: where does 'boring' storage capacity actually come from?",
+      "recentCoverage": [
+        {
+          "title": "The storage build-out is behind schedule. Nobody wants to say it.",
+          "date": "2026-05-14",
+          "note": "Argued the industry over-indexes on new-build lithium projects."
+        },
+        {
+          "title": "Why grid operators are quietly re-rating old hydro",
+          "date": "2026-03-02",
+          "note": "Covered the exact asset class Ferrowatt retrofits."
+        }
+      ],
+      "proofMatchNotes": [
+        "18 months of dispatch logs match her preference for operational data over projections",
+        "Pacific Northwest sites are in her home coverage region"
+      ],
+      "cautions": [
+        "Skeptical of funding-led pitches — lead with the dispatch data, not the round",
+        "Will ask for utility partners on record; only background is available"
+      ],
+      "suggestedAngle": "The cheapest grid battery is a dam built in 1962",
+      "preferredFormat": "Short email with data summary up top; no attachments",
+      "lastPitched": null
+    },
+    {
+      "id": "rep-002",
+      "name": "Daniel Reyes",
+      "outlet": "Cascadia Business Journal",
+      "outletType": "Regional business outlet",
+      "beat": "Pacific Northwest economy & infrastructure",
+      "location": "Seattle, WA",
+      "avatar": "assets/reporters/black-02.svg",
+      "fitScore": 74,
+      "scores": {
+        "beatRelevance": 72,
+        "coverageRecency": 70,
+        "audienceOverlap": 85,
+        "proofMatch": 68,
+        "receptivity": 80
+      },
+      "pitchReadiness": {
+        "level": "ready",
+        "note": "Site visits and local interviews are on offer — everything his format needs is available now."
+      },
+      "theOpen": "Fourteen dams your readers drive past every week just started earning money on the wholesale power market.",
+      "whyTheyCare": "Covers what infrastructure money means for towns in the region. Fourteen retrofit sites in Oregon and Washington is a local-jobs-and-land-use story before it is a climate story.",
+      "recentCoverage": [
+        {
+          "title": "Small towns, big transformers: the substation land rush",
+          "date": "2026-04-21",
+          "note": "Strong reader response on rural infrastructure economics."
+        },
+        {
+          "title": "Who profits when the grid comes to the county line?",
+          "date": "2026-01-30",
+          "note": "Frames infrastructure through local ownership and tax base."
+        }
+      ],
+      "proofMatchNotes": [
+        "Named retrofit sites give him concrete places and people to visit",
+        "CEO's dam-operator background fits his practitioner-profile style"
+      ],
+      "cautions": [
+        "Less interested in the funding round itself — frame around site communities",
+        "Needs site access or local interviews; pitch will stall without them"
+      ],
+      "suggestedAngle": "Fourteen forgotten dams in the Northwest just became grid assets",
+      "preferredFormat": "Email or phone; open to site visits with notice",
+      "lastPitched": "2025-11-08"
+    },
+    {
+      "id": "rep-003",
+      "name": "Priya Natarajan",
+      "outlet": "Foreground",
+      "outletType": "National climate-tech newsletter",
+      "beat": "Climate tech funding & deployment",
+      "location": "New York, NY",
+      "avatar": "assets/reporters/black-03.svg",
+      "fitScore": 69,
+      "scores": {
+        "beatRelevance": 86,
+        "coverageRecency": 64,
+        "audienceOverlap": 74,
+        "proofMatch": 60,
+        "receptivity": 52
+      },
+      "pitchReadiness": {
+        "level": "hold",
+        "note": "Hold until the cost claim is independently verified — she fact-checks pitches in public."
+      },
+      "theOpen": "You wrote that climate tech has an announcement problem. Here's a Series A with 18 months of dispatch logs attached.",
+      "whyTheyCare": "Tracks which climate verticals are getting funded versus deployed. A Series A with 18 months of revenue-generating operation cuts against the 'all announcements, no electrons' critique she has been making.",
+      "recentCoverage": [
+        {
+          "title": "Climate tech's announcement problem",
+          "date": "2026-02-12",
+          "note": "Publicly tired of funding rounds pitched as news."
+        },
+        {
+          "title": "The deployment issue: 11 companies actually shipping",
+          "date": "2025-12-04",
+          "note": "Annual list; Ferrowatt's profile fits the inclusion criteria."
+        }
+      ],
+      "proofMatchNotes": [
+        "Live deployment record fits her 'actually shipping' filter",
+        "Investor available for comment matches her funding-analysis format"
+      ],
+      "cautions": [
+        "Has publicly mocked dollar-amount-first pitches — never lead with the $12M",
+        "High inbound volume; receptivity is the weakest score on this card",
+        "Newsletter format means a mention, not a feature, is the realistic outcome"
+      ],
+      "suggestedAngle": "A Series A measured in megawatt-hours, not promises",
+      "preferredFormat": "Two-paragraph email, plain text, no follow-up before 5 business days",
+      "lastPitched": null
+    }
+  ]
+}

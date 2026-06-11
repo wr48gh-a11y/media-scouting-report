@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Scouting Report</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <img class="brand-mark" src="assets/logo/media-scouting-report-logo.svg" alt="Media Scouting Report logo">
+        <div class="brand-text">
+          <span class="brand-name">Media Scouting Report</span>
+          <span class="brand-sub">Outreach intelligence</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Workflow stages">
+        <button type="button" class="nav-item is-active" data-stage="brief" aria-current="step">
+          <span class="nav-num" aria-hidden="true">1</span> Story Brief
+        </button>
+        <button type="button" class="nav-item" data-stage="diagnosis">
+          <span class="nav-num" aria-hidden="true">2</span> Story Diagnosis
+        </button>
+        <button type="button" class="nav-item" data-stage="angles">
+          <span class="nav-num" aria-hidden="true">3</span> Angle Matrix
+        </button>
+        <button type="button" class="nav-item" data-stage="deck">
+          <span class="nav-num" aria-hidden="true">4</span> Target Deck
+        </button>
+        <button type="button" class="nav-item" data-stage="pack">
+          <span class="nav-num" aria-hidden="true">5</span> Outreach Pack
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <p class="thesis">Bad PR asks, “Who can we send this to?”<br><br>Good comms asks, “Who has a reason to care, and do we have the proof to deserve their time?”</p>
+        <span class="proto-tag">Prototype · sample data only</span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <!-- 1. Story Brief -->
+      <section class="stage is-active" id="stage-brief" aria-labelledby="brief-title">
+        <div class="stage-narrow">
+          <header class="stage-head">
+            <div>
+              <h1 id="brief-title">Story Brief</h1>
+              <p class="stage-desc">What are you actually announcing, and what can you prove? Everything downstream is only as good as this.</p>
+            </div>
+            <span class="chip">Step 1 of 5</span>
+          </header>
+
+          <div class="card">
+            <h2 class="card-title">The story</h2>
+            <div class="field">
+              <label for="f-company">Company</label>
+              <input id="f-company" type="text">
+            </div>
+            <div class="field">
+              <label for="f-headline">Working headline</label>
+              <input id="f-headline" type="text">
+            </div>
+            <div class="field">
+              <label for="f-summary">What happened, in plain language</label>
+              <textarea id="f-summary" rows="5"></textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-category">Story type</label>
+                <input id="f-category" type="text">
+              </div>
+              <div class="field">
+                <label for="f-target-date">Target date</label>
+                <input id="f-target-date" type="text" aria-describedby="f-target-date-hint">
+              </div>
+            </div>
+            <p class="field-hint" id="f-target-date-hint"></p>
+
+            <footer class="card-foot">
+              <p class="foot-note">Pre-filled from <code>data/sample-story.json</code>; edits don’t recompute the diagnosis in this pass.</p>
+              <button type="button" class="btn btn-primary" data-goto="diagnosis">Run Story Diagnosis →</button>
+            </footer>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Story Diagnosis -->
+      <section class="stage" id="stage-diagnosis" aria-labelledby="diagnosis-title">
+        <header class="stage-head">
+          <div>
+            <h1 id="diagnosis-title">Story Diagnosis</h1>
+            <p class="stage-desc">An honest read of the story’s strength before anyone’s inbox is involved.</p>
+          </div>
+          <span class="chip chip-verdict" id="verdict-chip"></span>
+        </header>
+
+        <p class="card card-summary" id="diagnosis-summary"></p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2 class="card-title">Signal strength</h2>
+            <div class="signals" id="signal-list"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Gaps to close</h2>
+            <p class="card-hint">What’s missing before this story deserves a reporter’s time.</p>
+            <ul class="gap-list" id="gap-list"></ul>
+          </div>
+        </div>
+
+        <div class="card section-gap">
+          <h2 class="card-title">Likely Target Types</h2>
+          <p class="card-hint">Where this story can earn attention — and what each audience needs before individual fit scores mean anything.</p>
+          <ul class="target-types" id="target-type-list"></ul>
+        </div>
+
+        <div class="grid-2 section-gap">
+          <div class="card">
+            <h2 class="card-title">Early Scout Signals</h2>
+            <p class="card-hint">First reads on who might take this story. Full scout cards and fit scores are in the Target Deck.</p>
+            <ul class="mini-deck" id="early-signal-list"></ul>
+          </div>
+          <div class="stack">
+            <div class="card">
+              <h2 class="card-title">Proof points</h2>
+              <p class="card-hint">Each claim is graded by the evidence behind it — not by how good it sounds.</p>
+              <ul class="proof-list" id="proof-list"></ul>
+            </div>
+            <div class="card">
+              <h2 class="card-title">Who should care</h2>
+              <ul class="plain-list" id="audience-list"></ul>
+            </div>
+            <div class="card">
+              <h2 class="card-title">Spokespeople</h2>
+              <ul class="plain-list" id="spokespeople-list"></ul>
+            </div>
+          </div>
+        </div>
+
+        <footer class="stage-foot">
+          <button type="button" class="btn btn-ghost" data-goto="brief">← Back to brief</button>
+          <button type="button" class="btn btn-primary" data-goto="angles">Explore angles →</button>
+        </footer>
+      </section>
+
+      <!-- 3. Angle Matrix -->
+      <section class="stage" id="stage-angles" aria-labelledby="angles-title">
+        <header class="stage-head">
+          <div>
+            <h1 id="angles-title">Angle Matrix</h1>
+            <p class="stage-desc">One story, many frames. Each cell is an audience × frame pairing — most stories only have two or three that are real.</p>
+          </div>
+          <span class="chip chip-soon">Placeholder — pass 2</span>
+        </header>
+
+        <div class="card">
+          <table class="matrix">
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Audience</span></th>
+                <th scope="col">Money frame</th>
+                <th scope="col">Risk frame</th>
+                <th scope="col">People frame</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Energy trade press</th>
+                <td class="matrix-cell is-filled">
+                  <strong>Retrofit vs. new-build cost</strong>
+                  <span>8–12% of new storage cost — needs verification first</span>
+                </td>
+                <td class="matrix-cell is-filled">
+                  <strong>Storage targets slipping</strong>
+                  <span>Latent capacity as the unglamorous fix</span>
+                </td>
+                <td class="matrix-cell is-empty">—</td>
+              </tr>
+              <tr>
+                <th scope="row">Regional business</th>
+                <td class="matrix-cell is-empty">—</td>
+                <td class="matrix-cell is-empty">—</td>
+                <td class="matrix-cell is-filled">
+                  <strong>Fourteen forgotten dams</strong>
+                  <span>Local sites, local jobs, ex-operator founder</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Climate funding press</th>
+                <td class="matrix-cell is-filled">
+                  <strong>Funded <em>and</em> deployed</strong>
+                  <span>18 months of revenue vs. the announcement economy</span>
+                </td>
+                <td class="matrix-cell is-empty">—</td>
+                <td class="matrix-cell is-empty">—</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="card-hint matrix-note">In a later pass, cells become draggable angle cards scored against the diagnosis, and each scout card links back to its cell.</p>
+        </div>
+
+        <footer class="stage-foot">
+          <button type="button" class="btn btn-ghost" data-goto="diagnosis">← Back to diagnosis</button>
+          <button type="button" class="btn btn-primary" data-goto="deck">Open Target Deck →</button>
+        </footer>
+      </section>
+
+      <!-- 4. Target Deck -->
+      <section class="stage" id="stage-deck" aria-labelledby="deck-title">
+        <header class="stage-head">
+          <div>
+            <h1 id="deck-title">Target Deck</h1>
+            <p class="stage-desc">Scout cards for reporters with a demonstrated reason to care — ranked by fit, not by outlet size.</p>
+          </div>
+          <span class="chip" id="deck-count"></span>
+        </header>
+
+        <div class="deck" id="deck"></div>
+
+        <footer class="stage-foot">
+          <button type="button" class="btn btn-ghost" data-goto="angles">← Back to angles</button>
+          <button type="button" class="btn btn-primary" data-goto="pack">Review Outreach Pack →</button>
+        </footer>
+      </section>
+
+      <!-- 5. Outreach Pack -->
+      <section class="stage" id="stage-pack" aria-labelledby="pack-title">
+        <header class="stage-head">
+          <div>
+            <h1 id="pack-title">Outreach Pack</h1>
+            <p class="stage-desc">Per-reporter preparation: the angle, the proof bundle, and the personalization notes. Not a mail merge.</p>
+          </div>
+          <span class="chip chip-soon">Placeholder — pass 2</span>
+        </header>
+
+        <div id="pack-body"></div>
+
+        <footer class="stage-foot">
+          <button type="button" class="btn btn-ghost" data-goto="deck">← Back to deck</button>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Shortlist tray -->
+  <aside class="tray" aria-label="Shortlist">
+    <div class="tray-inner">
+      <div class="tray-label">
+        <span class="tray-title">Shortlist</span>
+        <span class="tray-count" id="tray-count">0</span>
+      </div>
+      <div class="tray-chips" id="tray-chips" aria-live="polite"></div>
+      <button type="button" class="btn btn-primary btn-sm" id="tray-build" disabled data-goto="pack">Build Outreach Pack</button>
+    </div>
+  </aside>
+
+  <div class="load-error" id="load-error" role="alert" hidden>
+    <strong>Couldn’t load sample data.</strong>
+    <p>Browsers block <code>fetch</code> on <code>file://</code> pages. Serve the folder instead: <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000</code>.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+{
+  "id": "story-001",
+  "company": "Ferrowatt",
+  "headline": "Ferrowatt raises $12M Series A to retrofit small hydro dams into grid-scale batteries",
+  "summary": "Ferrowatt builds control software that lets the ~2,000 small, under-used hydroelectric dams in the US behave like dispatchable grid batteries. The company is announcing a $12M Series A led by Meridian Climate Capital, alongside 18 months of performance data from 14 retrofitted dams in the Pacific Northwest.",
+  "category": "Funding + performance data",
+  "timing": {
+    "embargoDate": "2026-06-24",
+    "flexibility": "Date is movable by up to one week",
+    "peg": "Announcement is timed ahead of FERC's small-hydro licensing comment period closing July 10"
+  },
+  "proofPoints": [
+    {
+      "claim": "14 dams retrofitted across Oregon and Washington, dispatching power on the wholesale market for 18 months",
+      "evidence": "Internal dispatch logs; two utility partners willing to confirm on background",
+      "strength": "strong"
+    },
+    {
+      "claim": "Retrofits cost 8-12% of equivalent new battery storage capacity",
+      "evidence": "Company cost model, not yet independently verified",
+      "strength": "moderate"
+    },
+    {
+      "claim": "$12M Series A led by Meridian Climate Capital",
+      "evidence": "Signed term sheet; investor available for comment",
+      "strength": "strong"
+    },
+    {
+      "claim": "Could unlock 3.5 GW of latent storage capacity nationally",
+      "evidence": "Extrapolated estimate, no third-party validation",
+      "strength": "weak"
+    }
+  ],
+  "audiences": [
+    "Grid operators and utility decision-makers",
+    "Climate-tech investors",
+    "Rural communities near existing dams",
+    "Energy policy watchers ahead of the FERC comment period"
+  ],
+  "spokespeople": [
+    {
+      "name": "Ana Volkov",
+      "role": "CEO and co-founder",
+      "notes": "Former dam operations engineer; strong on technical detail, untested on camera"
+    },
+    {
+      "name": "Sam Okonkwo",
+      "role": "Partner, Meridian Climate Capital",
+      "notes": "Available for investor-perspective quotes only"
+    }
+  ],
+  "diagnosis": {
+    "verdict": "Pitchable, with gaps",
+    "summary": "The story has real evidence behind it — 18 months of live dispatch data is rare for a Series A — but the funding number alone is not the story. The strongest frame is the existing-infrastructure angle with the FERC deadline as the peg. The weakest point is the lack of an on-record customer.",
+    "signals": [
+      {
+        "label": "Timeliness",
+        "score": 78,
+        "note": "FERC small-hydro comment period closes July 10 — a real, dated peg beyond the funding announcement."
+      },
+      {
+        "label": "Tension",
+        "score": 62,
+        "note": "Implicit conflict with new-build battery storage economics; no named opponent yet."
+      },
+      {
+        "label": "Evidence",
+        "score": 71,
+        "note": "Dispatch data is strong but partners will only confirm on background. Cost claim is self-reported."
+      },
+      {
+        "label": "Audience stakes",
+        "score": 66,
+        "note": "Concrete for utilities and dam-adjacent communities; abstract for general readers."
+      },
+      {
+        "label": "Novelty",
+        "score": 74,
+        "note": "Dam retrofits-as-batteries is an under-covered angle versus the saturated battery-startup beat."
+      }
+    ],
+    "gaps": [
+      "No utility customer willing to speak on the record — biggest blocker for tier-1 coverage",
+      "Cost-comparison claim (8-12%) lacks independent verification",
+      "The 3.5 GW national estimate should not be pitched as a headline number",
+      "No photography or b-roll of an actual retrofit site yet"
+    ],
+    "targetTypes": [
+      {
+        "name": "Energy trade press",
+        "whyTheyMayCare": "The storage deployment gap is their running story; latent hydro capacity is a fresh answer to it.",
+        "proofNeeded": "Dispatch data plus at least one named utility willing to confirm, even on background.",
+        "readiness": "high"
+      },
+      {
+        "name": "Regional business outlets",
+        "whyTheyMayCare": "Fourteen named sites in Oregon and Washington — local land use, jobs, and tax base.",
+        "proofNeeded": "Site access, local interviews, and photography at a retrofit.",
+        "readiness": "high"
+      },
+      {
+        "name": "Climate-tech newsletters",
+        "whyTheyMayCare": "A funding round with operating revenue cuts against the announcement-economy critique.",
+        "proofNeeded": "An independently verified cost comparison; the 8-12% claim is self-reported today.",
+        "readiness": "medium"
+      },
+      {
+        "name": "Infrastructure reporters",
+        "whyTheyMayCare": "FERC's small-hydro comment period gives a policy peg beyond the company news.",
+        "proofNeeded": "A spokesperson who can speak to licensing, not just the product — no one on the roster yet.",
+        "readiness": "low"
+      }
+    ]
+  }
+}
