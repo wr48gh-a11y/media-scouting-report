@@ -6,6 +6,8 @@ diagnosis of whether the story deserves coverage at all.
 
 It is deliberately **not an email generator**.
 
+**Live demo:** https://wr48gh-a11y.github.io/media-scouting-report/
+
 ## The thesis
 
 > Bad PR asks, "Who can we send this to?"
