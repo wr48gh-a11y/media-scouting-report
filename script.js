@@ -8,6 +8,10 @@ const state = {
   shortlist: new Set(), // reporter ids
 };
 
+const LANDING_READY_DELAY_MS = 1725;
+const ENTRY_STAGE_SETTLE_MS = 760;
+const LANDING_EXIT_FALLBACK_MS = 520;
+
 /* Fit-score components in display order. Keys match `scores` in
    data/reporters.json; weights and meaning are in docs/scoring-model.md. */
 const FIT_COMPONENT_LABELS = {
@@ -38,6 +42,8 @@ function statusChip(level) {
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
+setupLanding();
+
 /* The sample data is local and trusted, but every string rendered into
    markup goes through here so external data can't inject HTML later. */
 function esc(value) {
@@ -58,6 +64,93 @@ function avatarImg(reporter, className) {
 
 init();
 
+function setupLanding() {
+  const landing = $("#landing-layer");
+  if (!landing) return;
+
+  const landingCta = $("#landing-cta");
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let isReady = false;
+  let isDismissed = false;
+  let readyTimer = null;
+  let cleanupTimer = null;
+  let stageSettleTimer = null;
+
+  setWorkspaceInteractivity(false);
+  if (landingCta) {
+    landingCta.addEventListener("click", () => {
+      if (!isReady || isDismissed) return;
+      dismissLanding();
+    });
+  }
+
+  if (reducedMotionQuery.matches) {
+    window.requestAnimationFrame(markReady);
+  } else {
+    readyTimer = window.setTimeout(markReady, LANDING_READY_DELAY_MS);
+  }
+
+  function markReady() {
+    if (isDismissed || isReady) return;
+    isReady = true;
+    document.body.classList.add("is-landing-ready");
+    landing.classList.add("is-ready");
+    if (landingCta) landingCta.disabled = false;
+  }
+
+  function dismissLanding() {
+    isDismissed = true;
+    document.body.classList.add("is-landing-leaving");
+    document.body.classList.add("is-stage-arriving");
+    landing.classList.add("is-handoff");
+    landing.setAttribute("aria-hidden", "true");
+    if (landingCta) landingCta.disabled = true;
+    releaseWorkspace();
+
+    if (readyTimer) window.clearTimeout(readyTimer);
+    if (stageSettleTimer) window.clearTimeout(stageSettleTimer);
+    stageSettleTimer = window.setTimeout(
+      () => document.body.classList.remove("is-stage-arriving"),
+      reducedMotionQuery.matches ? 1 : ENTRY_STAGE_SETTLE_MS
+    );
+
+    if (reducedMotionQuery.matches) {
+      finishLanding();
+      return;
+    }
+
+    const onTransitionEnd = (event) => {
+      if (event.target !== landing || event.propertyName !== "opacity") return;
+      landing.removeEventListener("transitionend", onTransitionEnd);
+      finishLanding();
+    };
+
+    landing.addEventListener("transitionend", onTransitionEnd);
+    cleanupTimer = window.setTimeout(finishLanding, LANDING_EXIT_FALLBACK_MS);
+  }
+
+  function releaseWorkspace() {
+    setWorkspaceInteractivity(true);
+  }
+
+  function setWorkspaceInteractivity(isEnabled) {
+    const workspace = $(".app");
+    const tray = $(".tray");
+    [workspace, tray].forEach((element) => {
+      if (!element) return;
+      if (isEnabled) element.removeAttribute("inert");
+      else element.setAttribute("inert", "");
+    });
+  }
+
+  function finishLanding() {
+    if (cleanupTimer) window.clearTimeout(cleanupTimer);
+    document.body.classList.remove("is-landing-ready", "is-landing-leaving");
+    document.body.classList.remove("is-landing-active");
+    landing.remove();
+  }
+}
+
 async function init() {
   try {
     [state.story, state.reporters] = await loadSampleData();
@@ -77,8 +170,8 @@ async function init() {
 
 async function loadSampleData() {
   const [storyRes, reportersRes] = await Promise.all([
-    fetch("data/sample-story.json"),
-    fetch("data/reporters.json"),
+    fetch("data/sample-story.json", { cache: "no-store" }),
+    fetch("data/reporters.json", { cache: "no-store" }),
   ]);
   if (!storyRes.ok || !reportersRes.ok) throw new Error("Failed to fetch sample data");
   const story = await storyRes.json();
@@ -105,7 +198,9 @@ function showStage(name) {
     if (isActive) item.setAttribute("aria-current", "step");
     else item.removeAttribute("aria-current");
   });
-  window.scrollTo({ top: 0 });
+  const main = $(".main");
+  if (main) main.scrollTo({ top: 0 });
+  else window.scrollTo({ top: 0 });
 }
 
 /* ---------- 1. Story Brief ---------- */
@@ -126,7 +221,10 @@ function renderBrief(story) {
 function renderDiagnosis(story, reporters) {
   const diagnosis = story.diagnosis;
   $("#verdict-chip").textContent = diagnosis.verdict;
+  $("#pitchable-grade-chip").textContent = diagnosis.pitchableGrade?.grade || "—";
   $("#diagnosis-summary").textContent = diagnosis.summary;
+  $("#pitchable-grade").textContent = diagnosis.pitchableGrade?.grade || "—";
+  $("#pitchable-grade-note").textContent = diagnosis.pitchableGrade?.note || "";
   $("#signal-list").innerHTML = diagnosis.signals.map(signalRow).join("");
   $("#gap-list").innerHTML = diagnosis.gaps.map((gap) => `<li>${esc(gap)}</li>`).join("");
   $("#target-type-list").innerHTML = diagnosis.targetTypes.map(targetTypeCard).join("");
@@ -375,7 +473,11 @@ function renderTray() {
   $("#tray-chips").innerHTML =
     count === 0
       ? `<p class="tray-empty">No reporters shortlisted yet — add from the Target Deck.</p>`
-      : [...state.shortlist].map((id) => trayChip(findReporter(id))).join("");
+      : [...state.shortlist]
+          .map((id) => findReporter(id))
+          .filter(Boolean)
+          .map((reporter) => trayChip(reporter))
+          .join("");
 }
 
 function trayChip(reporter) {
@@ -401,10 +503,20 @@ function renderPack() {
       </div>`;
     return;
   }
-  body.innerHTML = [...state.shortlist].map((id) => packCard(findReporter(id))).join("");
+  body.innerHTML = [...state.shortlist]
+    .map((id) => findReporter(id))
+    .filter(Boolean)
+    .map((reporter) => packCard(reporter, state.story))
+    .join("");
 }
 
-function packCard(reporter) {
+function packCard(reporter, story) {
+  const proofPoints = story.proofPoints.slice(0, 3).map((point) => `
+    <li>
+      <strong>${esc(point.claim)}</strong>
+      <span>${esc(point.evidence)}</span>
+    </li>`).join("");
+  const recentCoverage = reporter.recentCoverage[0];
   return `
     <article class="pack-card">
       <header class="pack-who">
@@ -421,13 +533,15 @@ function packCard(reporter) {
           <h3>Format &amp; cadence</h3>
           ${esc(reporter.preferredFormat)}
         </section>
-        <section class="pack-slot">
+        <section class="pack-slot is-filled">
           <h3>Proof bundle</h3>
-          Pass 2 — evidence selected from the brief, matched to this reporter's standards.
+          <ul class="pack-list">${proofPoints}</ul>
         </section>
-        <section class="pack-slot">
+        <section class="pack-slot is-filled">
           <h3>Personalization notes</h3>
-          Pass 2 — talking points tied to their recent coverage. Notes, not a drafted email.
+          <p>${esc(reporter.whyTheyCare)}</p>
+          <p>${esc(reporter.cautions[0])}</p>
+          ${recentCoverage ? `<p>Lead with ${esc(recentCoverage.title)} (${esc(recentCoverage.date)}).</p>` : ""}
         </section>
       </div>
     </article>`;

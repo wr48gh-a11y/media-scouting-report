@@ -6,12 +6,37 @@
   <title>Media Scouting Report</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="is-landing-active">
+  <div class="landing-layer" id="landing-layer">
+    <header class="landing-nav">
+      <div class="landing-brand landing-seq landing-delay-1">
+        <img class="landing-brand-mark" src="assets/logo/logo.svg" alt="Media Scouting Report logo">
+        <span class="landing-brand-name">Media Scout Report</span>
+      </div>
+      <a class="landing-login landing-seq landing-delay-1" href="#">Login</a>
+    </header>
+
+    <section class="landing-hero" aria-labelledby="landing-title">
+      <div class="landing-copy">
+        <h1 class="landing-title landing-seq landing-delay-2" id="landing-title">
+          Know if it's worth pitching.
+        </h1>
+        <p class="landing-subtitle landing-seq landing-delay-3">
+          Diagnose the story, find the angle, rank the reporters, and build the outreach pack before anyone’s inbox gets punished.
+        </p>
+      </div>
+
+      <div class="landing-enter landing-seq landing-delay-4">
+        <button type="button" class="landing-cta" id="landing-cta" disabled>Enter workspace</button>
+      </div>
+    </section>
+  </div>
+
   <div class="app">
 
     <aside class="sidebar">
       <div class="brand">
-        <img class="brand-mark" src="assets/logo/media-scouting-report-logo.svg" alt="Media Scouting Report logo">
+        <img class="brand-mark" src="assets/logo/logo.svg" alt="Media Scouting Report logo">
         <div class="brand-text">
           <span class="brand-name">Media Scouting Report</span>
           <span class="brand-sub">Outreach intelligence</span>
@@ -36,10 +61,6 @@
         </button>
       </nav>
 
-      <div class="sidebar-foot">
-        <p class="thesis">Bad PR asks, “Who can we send this to?”<br><br>Good comms asks, “Who has a reason to care, and do we have the proof to deserve their time?”</p>
-        <span class="proto-tag">Prototype · sample data only</span>
-      </div>
     </aside>
 
     <main class="main">
@@ -49,8 +70,8 @@
         <div class="stage-narrow">
           <header class="stage-head">
             <div>
-              <h1 id="brief-title">Story Brief</h1>
-              <p class="stage-desc">What are you actually announcing, and what can you prove? Everything downstream is only as good as this.</p>
+              <h1 id="brief-title">What is your story?</h1>
+              <p class="stage-desc">Tell us what you’re announcing, what makes it news, and what proof you have.</p>
             </div>
             <span class="chip">Step 1 of 5</span>
           </header>
@@ -94,10 +115,17 @@
         <header class="stage-head">
           <div>
             <h1 id="diagnosis-title">Story Diagnosis</h1>
-            <p class="stage-desc">An honest read of the story’s strength before anyone’s inbox is involved.</p>
           </div>
-          <span class="chip chip-verdict" id="verdict-chip"></span>
+          <div class="diagnosis-badges">
+            <span class="chip chip-verdict" id="verdict-chip"></span>
+            <span class="chip chip-grade" id="pitchable-grade-chip"></span>
+          </div>
         </header>
+
+        <div class="stage-actions">
+          <button type="button" class="btn btn-ghost" data-goto="brief">← Back to brief</button>
+          <button type="button" class="btn btn-primary" data-goto="angles">Explore angles →</button>
+        </div>
 
         <p class="card card-summary" id="diagnosis-summary"></p>
 
@@ -106,10 +134,19 @@
             <h2 class="card-title">Signal strength</h2>
             <div class="signals" id="signal-list"></div>
           </div>
-          <div class="card">
-            <h2 class="card-title">Gaps to close</h2>
-            <p class="card-hint">What’s missing before this story deserves a reporter’s time.</p>
-            <ul class="gap-list" id="gap-list"></ul>
+          <div class="stack">
+            <div class="card">
+              <h2 class="card-title">Gaps to close</h2>
+              <p class="card-hint">What’s missing before this story deserves a reporter’s time.</p>
+              <ul class="gap-list" id="gap-list"></ul>
+            </div>
+            <div class="card">
+              <h2 class="card-title">Pitchable grade</h2>
+              <div class="grade-row">
+                <span class="grade-badge" id="pitchable-grade"></span>
+                <p class="grade-note" id="pitchable-grade-note"></p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -141,21 +178,16 @@
             </div>
           </div>
         </div>
-
-        <footer class="stage-foot">
-          <button type="button" class="btn btn-ghost" data-goto="brief">← Back to brief</button>
-          <button type="button" class="btn btn-primary" data-goto="angles">Explore angles →</button>
-        </footer>
       </section>
 
       <!-- 3. Angle Matrix -->
       <section class="stage" id="stage-angles" aria-labelledby="angles-title">
         <header class="stage-head">
           <div>
-            <h1 id="angles-title">Angle Matrix</h1>
-            <p class="stage-desc">One story, many frames. Each cell is an audience × frame pairing — most stories only have two or three that are real.</p>
+            <h1 id="angles-title">Which angle fits which audience?</h1>
+            <p class="stage-desc">Match each audience to the frame they can actually use.</p>
           </div>
-          <span class="chip chip-soon">Placeholder — pass 2</span>
+          <span class="chip">Sample matrix</span>
         </header>
 
         <div class="card">
@@ -235,7 +267,7 @@
             <h1 id="pack-title">Outreach Pack</h1>
             <p class="stage-desc">Per-reporter preparation: the angle, the proof bundle, and the personalization notes. Not a mail merge.</p>
           </div>
-          <span class="chip chip-soon">Placeholder — pass 2</span>
+          <span class="chip">Built from shortlist</span>
         </header>
 
         <div id="pack-body"></div>

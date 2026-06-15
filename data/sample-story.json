@@ -52,6 +52,10 @@
   "diagnosis": {
     "verdict": "Pitchable, with gaps",
     "summary": "The story has real evidence behind it — 18 months of live dispatch data is rare for a Series A — but the funding number alone is not the story. The strongest frame is the existing-infrastructure angle with the FERC deadline as the peg. The weakest point is the lack of an on-record customer.",
+    "pitchableGrade": {
+      "grade": "B+",
+      "note": "Pitchable now, but the customer proof and cost claim need tightening."
+    },
     "signals": [
       {
         "label": "Timeliness",
